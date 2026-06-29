@@ -2,23 +2,26 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Servidor QR</title>
+    <title>Redirigiendo...</title>
 </head>
 <body>
 
-<h1>Servidor QR</h1>
-
-<p id="mensaje">Leyendo información...</p>
+<h2>Conectando con el servidor...</h2>
 
 <script>
 
 fetch("ip.json")
-.then(respuesta => respuesta.json())
-.then(datos => {
+.then(res => res.json())
+.then(data => {
 
-    document.getElementById("mensaje").innerHTML =
-        "IP: " + datos.ip + "<br>Puerto: " + datos.puerto;
+    const url = "http://" + data.ip + ":" + data.puerto;
 
+    window.location.href = url;
+
+})
+.catch(() => {
+    document.body.innerHTML =
+    "<h2>Error: no se pudo conectar con el servidor</h2>";
 });
 
 </script>
