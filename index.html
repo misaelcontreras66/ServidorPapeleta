@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <title>Servidor QR</title>
 </head>
-
 <body>
 
 <h1>Servidor QR</h1>
 
-<p>Preparando conexión...</p>
+<p id="mensaje">Leyendo información...</p>
 
 <script>
 
-alert("¡JavaScript está funcionando!");
+fetch("ip.json")
+.then(respuesta => respuesta.json())
+.then(datos => {
+
+    document.getElementById("mensaje").innerHTML =
+        "IP: " + datos.ip + "<br>Puerto: " + datos.puerto;
+
+});
 
 </script>
 
 </body>
-
 </html>
