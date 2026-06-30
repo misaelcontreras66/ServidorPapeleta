@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Redirigiendo...</title>
+</head>
+<body>
+  <h2>Conectando al servidor...</h2>
+
+  <script>
+    async function redirect() {
+      try {
+        const res = await fetch("ip.json");
+        const data = await res.json();
+
+        const url = `http://${data.ip}:${data.puerto}`;
+
+        console.log("Redirigiendo a:", url);
+
+        window.location.href = url;
+
+      } catch (err) {
+        document.body.innerHTML = "Error al conectar con el servidor";
+      }
+    }
+
+    redirect();
+  </script>
+</body>
+</html>
